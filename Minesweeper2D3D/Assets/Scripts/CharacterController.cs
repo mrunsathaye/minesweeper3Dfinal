@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class CharacterController : MonoBehaviour
 {
     public int blood = 5;
+    bool flag = false;
 
     private NavMeshAgent mMeshAgent;
 
@@ -17,6 +18,7 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         mMeshAgent = GetComponent<NavMeshAgent>();
+        Debug.Log("This is a test");
     }
 
     // Update is called once per frame
@@ -46,10 +48,24 @@ public class CharacterController : MonoBehaviour
             Brick brick = hitObject.GetComponent<Brick>();
             if (brick != null) {
                 brick.ShowSecret();
-
                 if (brick.mine && mPreviousBrick != null) {
                     mMeshAgent.SetDestination(mPreviousBrick.transform.position);
-                    blood -= 1;
+                    flag = true;
+                    Debug.Log("Here!!! Now!!!" + blood);
+
+                }
+
+                else if(flag == true)
+                {
+                    blood--;
+
+                    if(blood <= 0)
+                    {
+                        Debug.Log("should quit!!!");
+                        UnityEditor.EditorApplication.isPlaying = false;
+                    }
+
+                    flag = false;
                 }
 
                 if (brick != mCurrentBrick) {
