@@ -48,6 +48,15 @@ public class CharacterController : MonoBehaviour
             Brick brick = hitObject.GetComponent<Brick>();
             if (brick != null) {
                 brick.ShowSecret();
+                
+                if (brick != mCurrentBrick) {
+                    mPreviousBrick = mCurrentBrick;
+                    if(!brick.mine)
+                    {
+                        mCurrentBrick = brick;
+                    }
+                }
+
                 if (brick.mine && mPreviousBrick != null) {
                     mMeshAgent.SetDestination(mPreviousBrick.transform.position);
                     flag = true;
@@ -68,10 +77,7 @@ public class CharacterController : MonoBehaviour
                     flag = false;
                 }
 
-                if (brick != mCurrentBrick) {
-                    mPreviousBrick = mCurrentBrick;
-                    mCurrentBrick = brick;
-                }
+                
             }
         }
     }
