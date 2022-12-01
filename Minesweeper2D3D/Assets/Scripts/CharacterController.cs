@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class CharacterController : MonoBehaviour
 {
     public int blood = 5;
+    public GameObject[] hearts;
+
     bool flag = false;
 
     private NavMeshAgent mMeshAgent;
@@ -67,6 +69,9 @@ public class CharacterController : MonoBehaviour
                 else if(flag == true)
                 {
                     blood--;
+
+                    Destroy(hearts[blood].gameObject);
+
 
                     if(blood <= 0)
                     {
