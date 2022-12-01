@@ -6,21 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
-    public int blood = 5;
+    public int lives = 5;
     public GameObject[] hearts;
 
     bool flag = false;
 
-    private NavMeshAgent mMeshAgent;
+    private NavMeshAgent mesh;
 
-    private Brick mPreviousBrick;
+    private Brick prevPosition;
 
-    private Brick mCurrentBrick;
+    private Brick currentPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        mMeshAgent = GetComponent<NavMeshAgent>();
+        mesh = GetComponent<NavMeshAgent>();
         Debug.Log("This is a test");
     }
 
@@ -31,10 +31,10 @@ public class CharacterController : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
-                GameObject hitObject = hit.transform.gameObject;
-                Brick brick = hitObject.GetComponent<Brick>();
+                GameObject objTouched = hit.transform.gameObject;
+                Brick brick = objTouched.GetComponent<Brick>();
                 if (brick != null) {
-                    mMeshAgent.SetDestination(hit.transform.position);
+                    mesh.SetDestination(hit.transform.position);
                 }
             }
         }
@@ -47,34 +47,34 @@ public class CharacterController : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
         if (Physics.SphereCast(ray, 0.2f, out hit)) {
-            GameObject hitObject = hit.transform.gameObject;
-            Brick brick = hitObject.GetComponent<Brick>();
+            GameObject objTouched = hit.transform.gameObject;
+            Brick brick = objTouched.GetComponent<Brick>();
             if (brick != null) {
-                brick.ShowSecret();
+                brick.revealBrick();
                 
-                if (brick != mCurrentBrick) {
-                    mPreviousBrick = mCurrentBrick;
+                if (brick != currentPosition) {
+                    prevPosition = currentPosition;
                     if(!brick.mine)
                     {
-                        mCurrentBrick = brick;
+                        currentPosition = brick;
                     }
                 }
 
-                if (brick.mine && mPreviousBrick != null) {
-                    mMeshAgent.SetDestination(mPreviousBrick.transform.position);
+                if (brick.mine && prevPosition != null) {
+                    mesh.SetDestination(prevPosition.transform.position);
                     flag = true;
-                    Debug.Log("Here!!! Now!!!" + blood);
+                    //Debug.Log("Here!!! Now!!!" + lives);
 
                 }
 
                 else if(flag == true)
                 {
-                    blood--;
+                    lives--;
 
-                    Destroy(hearts[blood].gameObject);
+                    Destroy(hearts[lives].gameObject);
 
 
-                    if(blood <= 0)
+                    if(lives <= 0)
                     {
                         Debug.Log("should quit!!!");
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

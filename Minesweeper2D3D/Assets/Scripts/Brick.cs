@@ -13,9 +13,9 @@ public class Brick : MonoBehaviour
 
     public SpriteRenderer tile = null;
 
-    public List<Brick> mNeighbors;
+    public List<Brick> surrounding;
 
-    private bool mShowed = false;
+    private bool revealed = false;
 
     public static void BuildSpritesMap()
     {
@@ -49,24 +49,24 @@ public class Brick : MonoBehaviour
     {
         var allBricks = GameObject.FindGameObjectsWithTag("Brick");
 
-        mNeighbors = new List<Brick>();
+        surrounding = new List<Brick>();
 
         for (int i = 0; i < allBricks.Length; i++) {
             var brick = allBricks[i];
             var distance = Vector3.Distance(transform.position, brick.transform.position);
             if (0 < distance && distance <= radius) {
-                mNeighbors.Add(brick.GetComponent<Brick>());
+                surrounding.Add(brick.GetComponent<Brick>());
             }
         }
 
-        Debug.Log($"{mNeighbors.Count} neighbors");
+        Debug.Log($"{surrounding.Count} neighbors");
     }
 
-    public void ShowSecret()
+    public void revealBrick()
     {
-        if (mShowed) return;
+        if (revealed) return;
 
-        mShowed = true;
+        revealed = true;
 
         string name;
 
@@ -74,7 +74,7 @@ public class Brick : MonoBehaviour
             name = "TileMine";
         } else {
             int num = 0;
-            mNeighbors.ForEach(brick => {
+            surrounding.ForEach(brick => {
                 if (brick.mine) num += 1;
             });
             name = $"Tile{num}";
