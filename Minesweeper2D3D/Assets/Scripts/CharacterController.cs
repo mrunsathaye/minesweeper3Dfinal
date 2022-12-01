@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
@@ -76,7 +77,8 @@ public class CharacterController : MonoBehaviour
                     if(blood <= 0)
                     {
                         Debug.Log("should quit!!!");
-                        UnityEditor.EditorApplication.isPlaying = false;
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                        //UnityEditor.EditorApplication.isPlaying = false;
                     }
 
                     flag = false;
