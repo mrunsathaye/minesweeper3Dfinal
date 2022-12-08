@@ -63,6 +63,10 @@ public class Brick : MonoBehaviour
         Debug.Log($"{surrounding.Count} neighbors");
     }
 
+    public void flag() {
+        name = "TileFlag";
+    }
+
     public void revealBrick()
     {
         // if (revealed) { 
