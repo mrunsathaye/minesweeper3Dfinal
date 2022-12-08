@@ -6,21 +6,15 @@ using UnityEditor;
 public class Brick : MonoBehaviour
 {    
     private static Dictionary<string, Sprite> mTileImages;
-
     public bool mine = false;
-
     public float radius = 1.42f;
-
     public SpriteRenderer tile = null;
-
     public List<Brick> surrounding;
-
     public bool revealed = false;
     public bool trialBrick=false;
 
-    // public int numBrickRevealed = 0;
+    //public int numBrickRevealed = 0;
     // public int numMine = 0;
-
     //public bool boardRevealed = false;
 
     public static void BuildSpritesMap()
@@ -80,9 +74,12 @@ public class Brick : MonoBehaviour
 
         string name;
 
-        if (mine) {
+        if (mine) 
+        {
             name = "TileMine";
-        } else {
+        } 
+        else 
+        {
             int num = 0;
             surrounding.ForEach(brick => {
                 if (brick.mine) num += 1;
@@ -91,8 +88,9 @@ public class Brick : MonoBehaviour
         }
 
         Sprite sprite;
-        if (mTileImages.TryGetValue(name, out sprite))
+        if (mTileImages.TryGetValue(name, out sprite)){
             tile.sprite = sprite;
+        }
     }
 
     public void boardCleared()

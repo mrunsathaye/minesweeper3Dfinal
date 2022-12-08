@@ -8,24 +8,38 @@ public class CharacterController : MonoBehaviour
 {
     public int lives = 5;
     public GameObject[] hearts;
-
     bool flag = false;
-    public int gameTries = 0;
+    public int gameTries = 1;    
     private NavMeshAgent mesh;
-
     private Brick prevPosition;
-
     private Brick currentPosition;
-
-public int numBrickRevealed = 0;
+    public int numBrickRevealed = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         mesh = GetComponent<NavMeshAgent>();
         Debug.Log("This is a test");
+
+    
     }
 
+    void Awake() 
+    {
+        if (PlayerPrefs.HasKey ("Num Lives"))
+        { 
+            gameTries = PlayerPrefs.GetInt("Num Lives");
+        }
+        else
+        {
+            Save();
+        }
+        
+    }
+    void Save()
+    {
+        PlayerPrefs.SetInt("Num Lives", gameTries);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -43,6 +57,7 @@ public int numBrickRevealed = 0;
 
         DetectMine();
     }
+
 
     private void DetectMine()
     {
@@ -70,21 +85,18 @@ public int numBrickRevealed = 0;
                     mesh.SetDestination(prevPosition.transform.position);
                     flag = true;
                     //Debug.Log("Here!!! Now!!!" + lives);
-
                 }
 
                 else if(flag == true)
                 {
                     lives--;
-
                     Destroy(hearts[lives].gameObject);
-
-                    
 
                     if( lives <= 0)
                     {
                         gameTries++;
-                        //Debug.Log("should quit!!!");
+                        Save();
+                        Debug.Log("tried amount: "+ gameTries);
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                         //UnityEditor.EditorApplication.isPlaying = false;
                     }

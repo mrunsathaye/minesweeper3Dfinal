@@ -5,21 +5,19 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [Header("Component")]
-    public TextMeshProUGUI timerText;
+    CharacterController penguin;//= new CharacterController();
+    [SerializeField] GameObject characterOld;
+    public TextMeshProUGUI displayText;
 
-    [Header("Timer Settings")]
-    private float currentTime;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+       penguin = characterOld.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTime+= Time.deltaTime;
-        timerText.text = currentTime.ToString();
+       displayText.text = "Trial: "+ penguin.gameTries.ToString();
     }
 }
