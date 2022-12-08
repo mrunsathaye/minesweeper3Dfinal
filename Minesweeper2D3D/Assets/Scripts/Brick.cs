@@ -15,9 +15,13 @@ public class Brick : MonoBehaviour
 
     public List<Brick> surrounding;
 
-    private bool revealed = false;
+    public bool revealed = false;
+    public bool trialBrick=false;
 
-    public bool boardRevealed = false;
+    // public int numBrickRevealed = 0;
+    // public int numMine = 0;
+
+    //public bool boardRevealed = false;
 
     public static void BuildSpritesMap()
     {
@@ -34,12 +38,13 @@ public class Brick : MonoBehaviour
     void Start()
     {
         BuildSpritesMap();
+       // var unitBricks = GameObject.FindGameObjectsWithTag("Brick");
     }
 
     // Update is called once per frame
     void Update()
     {
-        boardCleared();
+
     }
 
     void OnValidate()
@@ -66,9 +71,12 @@ public class Brick : MonoBehaviour
 
     public void revealBrick()
     {
-        if (revealed) return;
+        // if (revealed) { 
+        //     numBrickRevealed++;
+        //     return;
+        // }
 
-        revealed = true;
+        //revealed = true;
 
         string name;
 
@@ -89,25 +97,27 @@ public class Brick : MonoBehaviour
 
     public void boardCleared()
     {
-        int numBrickRevealed = 0;
-        
-        surrounding.ForEach(brick => 
-        {
-            if ( (brick.mine == false) && (brick.revealed == true) )
-            {
-                numBrickRevealed++;
-            } 
-        });
 
-        // for (int i=0; i<allBricks.Length; i++){
-        //     if ( (allBricks[i].mine == false) && (allBricks[i].revealed == true) ){
+        
+        // surrounding.ForEach(brick => 
+        // {
+        //     if ( (brick.mine == false) && (brick.revealed == true) )
+        //     {
+        //         numBrickRevealed++;
+        //     } 
+        // });
+
+        
+
+        // for (int i=0; i<unitBricks.Length; i++){
+        //     if ( (unitBricks[i].mine == false) && (unitBricks[i].revealed == true) ){
         //         numBrickRevealed++;
         //     }
         // }
 
-        if (numBrickRevealed == 400){
-            boardRevealed = true;
-        }
+        // if (numBrickRevealed == 400){
+        //     boardRevealed = true;
+        // }
         //Debug.Log("Here!!! Now!!!" + boardRevealed);
     }
 }

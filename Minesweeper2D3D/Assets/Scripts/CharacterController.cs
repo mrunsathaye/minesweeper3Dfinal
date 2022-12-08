@@ -17,6 +17,8 @@ public class CharacterController : MonoBehaviour
 
     private Brick currentPosition;
 
+public int numBrickRevealed = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +54,10 @@ public class CharacterController : MonoBehaviour
             if (brick != null) {
                 brick.revealBrick();
                 
+                if (brick.revealed == true){
+                    numBrickRevealed++;
+                }
+
                 if (brick != currentPosition) {
                     prevPosition = currentPosition;
                     if(!brick.mine)
@@ -73,9 +79,7 @@ public class CharacterController : MonoBehaviour
 
                     Destroy(hearts[lives].gameObject);
 
-                    if (brick.boardRevealed == true){
-                        UnityEditor.EditorApplication.isPlaying = false;
-                    }
+                    
 
                     if( lives <= 0)
                     {
@@ -85,6 +89,9 @@ public class CharacterController : MonoBehaviour
                         //UnityEditor.EditorApplication.isPlaying = false;
                     }
 
+                    // if (brick.boardRevealed == true){
+                    //     UnityEditor.EditorApplication.isPlaying = false;
+                    // }
                     flag = false;
                 }
 
