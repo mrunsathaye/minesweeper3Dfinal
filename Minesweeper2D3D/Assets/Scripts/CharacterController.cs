@@ -56,6 +56,18 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+        else if(Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit)) {
+                GameObject objTouched = hit.transform.gameObject;
+                Brick brick = objTouched.GetComponent<Brick>();
+                brick.flag();
+            }
+            Debug.Log("Here loL");
+        }
+
         DetectMine();
     }
 

@@ -65,6 +65,10 @@ public class Brick : MonoBehaviour
 
     public void flag() {
         name = "TileFlag";
+        Sprite sprite;
+        if (mTileImages.TryGetValue(name, out sprite)){
+            tile.sprite = sprite;
+        }
     }
 
     public void revealBrick()
