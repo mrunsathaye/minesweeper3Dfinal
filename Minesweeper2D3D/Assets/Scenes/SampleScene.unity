@@ -8481,8 +8481,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d8fddf8e9c24dddb946f45d8de7774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterOld: {fileID: 0}
-  displayText: {fileID: 0}
+  characterOld: {fileID: 2072713448}
+  displayText: {fileID: 955435212}
 --- !u!1001 &408392988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24074,7 +24074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Timer
+  m_text: Trial Num
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
