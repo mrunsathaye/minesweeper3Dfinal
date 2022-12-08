@@ -17,6 +17,8 @@ public class Brick : MonoBehaviour
 
     private bool revealed = false;
 
+    public bool boardRevealed = false;
+
     public static void BuildSpritesMap()
     {
         if (mTileImages == null) {
@@ -37,7 +39,7 @@ public class Brick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        boardCleared();
     }
 
     void OnValidate()
@@ -83,5 +85,29 @@ public class Brick : MonoBehaviour
         Sprite sprite;
         if (mTileImages.TryGetValue(name, out sprite))
             tile.sprite = sprite;
+    }
+
+    public void boardCleared()
+    {
+        int numBrickRevealed = 0;
+        
+        surrounding.ForEach(brick => 
+        {
+            if ( (brick.mine == false) && (brick.revealed == true) )
+            {
+                numBrickRevealed++;
+            } 
+        });
+
+        // for (int i=0; i<allBricks.Length; i++){
+        //     if ( (allBricks[i].mine == false) && (allBricks[i].revealed == true) ){
+        //         numBrickRevealed++;
+        //     }
+        // }
+
+        if (numBrickRevealed == 400){
+            boardRevealed = true;
+        }
+        //Debug.Log("Here!!! Now!!!" + boardRevealed);
     }
 }

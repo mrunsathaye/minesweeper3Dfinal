@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
     public GameObject[] hearts;
 
     bool flag = false;
-
+    public int gameTries = 0;
     private NavMeshAgent mesh;
 
     private Brick prevPosition;
@@ -73,10 +73,14 @@ public class CharacterController : MonoBehaviour
 
                     Destroy(hearts[lives].gameObject);
 
+                    if (brick.boardRevealed == true){
+                        UnityEditor.EditorApplication.isPlaying = false;
+                    }
 
-                    if(lives <= 0)
+                    if( lives <= 0)
                     {
-                        Debug.Log("should quit!!!");
+                        gameTries++;
+                        //Debug.Log("should quit!!!");
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                         //UnityEditor.EditorApplication.isPlaying = false;
                     }
