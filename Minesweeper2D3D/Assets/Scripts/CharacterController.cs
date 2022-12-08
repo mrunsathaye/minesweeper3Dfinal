@@ -18,6 +18,7 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll(); //delete all preferences when the game starts
         mesh = GetComponent<NavMeshAgent>();
         Debug.Log("This is a test");
 
