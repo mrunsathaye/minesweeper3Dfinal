@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Timer : MonoBehaviour
+public class Trial : MonoBehaviour
 {
     CharacterController penguin;//= new CharacterController();
     [SerializeField] GameObject characterOld;
