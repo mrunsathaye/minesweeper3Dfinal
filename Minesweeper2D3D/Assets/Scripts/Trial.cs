@@ -6,13 +6,13 @@ using TMPro;
 public class Trial : MonoBehaviour
 {
     CharacterController penguin;//= new CharacterController();
-    [SerializeField] GameObject characterOld;
+    [SerializeField] GameObject oldChar;
     public TextMeshProUGUI displayText;
 
     // Start is called before the first frame update
     void Awake()
     {
-       penguin = characterOld.GetComponent<CharacterController>();
+       penguin = oldChar.GetComponent<CharacterController>();
     }
 
     // Update is called once per frame

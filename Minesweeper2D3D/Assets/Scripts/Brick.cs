@@ -5,13 +5,13 @@ using UnityEditor;
 
 public class Brick : MonoBehaviour
 {    
-    private static Dictionary<string, Sprite> mTileImages;
+    private static Dictionary<string, Sprite> imageTile;
     public bool mine = false;
     public float radius = 1.42f;
     public SpriteRenderer tile = null;
     public List<Brick> surrounding;
     public bool revealed = false;
-    public bool trialBrick=false;
+    public bool brickTile=false;
 
     //public int numBrickRevealed = 0;
     // public int numMine = 0;
@@ -19,11 +19,11 @@ public class Brick : MonoBehaviour
 
     public static void BuildSpritesMap()
     {
-        if (mTileImages == null) {
+        if (imageTile == null) {
             Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/MinesweeperSprites");
-            mTileImages = new Dictionary<string, Sprite>();
+            imageTile = new Dictionary<string, Sprite>();
             for (int i = 0; i < sprites.Length; i++) {
-                mTileImages.Add(sprites[i].name, (Sprite) sprites[i]);
+                imageTile.Add(sprites[i].name, (Sprite) sprites[i]);
             }
         }
     }
@@ -66,7 +66,7 @@ public class Brick : MonoBehaviour
     public void flag() {
         name = "TileFlag";
         Sprite sprite;
-        if (mTileImages.TryGetValue(name, out sprite)){
+        if (imageTile.TryGetValue(name, out sprite)){
             tile.sprite = sprite;
         }
     }
@@ -96,7 +96,7 @@ public class Brick : MonoBehaviour
         }
 
         Sprite sprite;
-        if (mTileImages.TryGetValue(name, out sprite)){
+        if (imageTile.TryGetValue(name, out sprite)){
             tile.sprite = sprite;
         }
     }

@@ -8,17 +8,17 @@ public class CameraFollower : MonoBehaviour
 
     public float smoothSpeed = 5f;
 
-    private Vector3 mDistance;
+    private Vector3 dist;
 
     // Start is called before the first frame update
     void Start()
     {
-        mDistance = character.transform.position - transform.position;
+        dist = character.transform.position - transform.position;
     }
 
     void LateUpdate()
     {
-        Vector3 nextPos = character.transform.position - mDistance;
+        Vector3 nextPos = character.transform.position - dist;
         transform.position = Vector3.Lerp(transform.position, nextPos, smoothSpeed * Time.deltaTime);
     }
 }
