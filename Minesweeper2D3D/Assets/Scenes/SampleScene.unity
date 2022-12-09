@@ -8481,7 +8481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d8fddf8e9c24dddb946f45d8de7774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterOld: {fileID: 2072713448}
+  oldChar: {fileID: 2072713448}
   displayText: {fileID: 955435212}
 --- !u!1001 &408392988
 PrefabInstance:
@@ -29810,7 +29810,7 @@ MonoBehaviour:
   - {fileID: 646100916}
   - {fileID: 1141636661}
   revealed: 0
-  trialBrick: 0
+  brickTile: 0
 --- !u!114 &1138185762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29831,7 +29831,7 @@ MonoBehaviour:
   - {fileID: 646100916}
   - {fileID: 1141636661}
   revealed: 0
-  trialBrick: 0
+  brickTile: 0
 --- !u!114 &1139519849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4585713216936421133, guid: 86f8e701146dd4517b8e0580d25d5dbb,
